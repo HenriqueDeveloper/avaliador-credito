@@ -1,0 +1,31 @@
+server:
+  port: 8888
+spring:
+  application:
+    name: cloud-gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://eureka-user:123456@localhost:8761/eureka
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    urls:
+      - url: /v3/api-docs
+        name: CLOUD-GATEWAY
+      - url: /cliente-service/v3/api-docs
+        name: CLIENTE-SERVICE
+      - url: /cartao-service/v3/api-docs
+        name: CARTAO-SERVICE
+      - url: /avaliador-credito-service/v3/api-docs
+        name: AVALIADOR-CREDITO-SERVICE
+keycloak:
+  jwt_public_key: "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAngFYqNEhgIScFIkNYSqkgyKYkX5dyKdO+2GPPK+CPxybDbwOREu+/R4/6agI03W+fYjey/nA/++FDO6IZiSUPqdZm3kZ+xr2KYI8VGIBXarLaE//yvwxjzZEpRTEzKIv7H/JRD7l45dnQRpxPNBUDtA7PzjOy/8WKY6Gf+oJNqJaOK84wnVB42wuuc0/zpOX/xRR2mMMUAaDHoN9ZM9r2CVBEYyG+KA9nvoDDhgdVy/5ll3ucEHaIAYR2uKekhHNQMEdhd3zgkq46QKfSBcehmWXYuN9nk1h7OjmrvcgUgahCmYZs8SNkuoKHWbIqGzVsqUlF9978ALIlDfXLl/EHQIDAQAB"

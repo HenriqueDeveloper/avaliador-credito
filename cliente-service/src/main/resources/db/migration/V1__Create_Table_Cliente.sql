@@ -1,0 +1,6 @@
+﻿CREATE TABLE cliente (
+    id SERIAL PRIMARY KEY,
+    cpf VARCHAR(255) NOT NULL,
+    nome VARCHAR(255) NOT NULL,
+    idade INT NOT NULL
+);

@@ -1,0 +1,41 @@
+server:
+  port: 0
+spring:
+  application:
+    name: cartao-service
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/cartoes_ms
+    username: postgres
+    password: postgres
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka-user:123456@localhost:8761/eureka
+  instance:
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+openapi: 
+   url: http://localhost:8888 #api gateway url
+springdoc:
+  show-actuator: true
+  api-docs:
+   path: cartao-service/v3/api-docs
+mq:
+  queue:
+    emissao-cartoes: emissao-cartoes
+keycloak:
+  jwt_public_key: "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtRSO4qCk//4EcEL9EW5xnv8OhKS3Iyiheghyy+hgufaucWlsBEXKFks/brx1nbo4F4cvN9zsDgN88IEJMmTtc81HA2IZ96CJ6CF4spUR6BI+mIvQR43Tg8SS1dTjITSMfoLaIokLJXZuGVcaLJmVl0RiXw8HGvG9kvlf7MFkLIkE9LgyLbJLaEU7x+LdiQ64e0GL+khZof0Ug1h27MQNZ4A/h4/xza0s0VdgoxSR9VYdaJfOkZjoUG8IVv6HKC9M9yHNSjEOtVcpKItKcRdcX2j96PPeIQZKwuIqku4CvT5ElNZLTQ6x1+apXHEmhqcjVOxYWgodFCncCfQdrcbiPwIDAQAB"
+  url: "http://localhost:8080/realms/avaliador-credito/protocol/openid-connect/token"
+  clientId: "avaliador-credito"
+  clientSecret: "XdQe5HBsk3Wj0Xuwz53GFVQfmCXr6Ub9"
