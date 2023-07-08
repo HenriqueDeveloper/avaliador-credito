@@ -9,7 +9,7 @@
 
 # AVALIADOR-CREDITO-MICROSSERVICES
 
-This sales API is a simple system designed to manage sales transactions. It provides endpoints for creating, updating, listing, and deleting users, products, items, and clients, with authentication and authorization features.
+The Credit Evaluation API is a simple system developed to perform credit analyses based on card, client, and credit evaluator information. This API provides a user-friendly interface for conducting credit inquiries and obtaining quick responses regarding a client's eligibility to receive credit.
 
 ## Requirements
 
