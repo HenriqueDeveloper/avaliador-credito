@@ -24,7 +24,7 @@ springdoc:
   api-docs:
    path: avaliador-credito-service/v3/api-docs
 keycloak:
-  jwt_public_key: "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAzK200oMO/BW2UTVE2V78irh+xl1KVjkf4zt8pZ8rDJFht/vnUGN8iHBK1Xo4e600afuTCcf0vYZ8bECfcH5F4hgxAdJB9S0j+5NHmcMtxzvcbuZJ90hZk3M/tkbC+gQUb85goNBovao88qpnIvc8FQ5+r/sL7lTF+5bldO4EHHZGxq9I454Jl++4vZnLNzQRn9NkIp1DsmrLI+c62L71T3t6yP8LMeKLh9YqTmMw9rxgr0etgRaOQGetDwUjgwNCZFQuna3wdbmXN8UIpOljyE/kAc9ECWn+GtmiqexuD+joG19N/BhlyOnat+4mia8LVQae+VtVqGAay6KA60NvjwIDAQAB"
-  url: "http://localhost:8080/realms/avaliador-credito/protocol/openid-connect/token"
-  clientId: "avaliador-credito"
-  clientSecret: "6ThF9wMuiALOrZ7DEmL26k3oh8877RFw"
+  jwt_public_key: 
+  url: 
+  clientId: 
+  clientSecret: 

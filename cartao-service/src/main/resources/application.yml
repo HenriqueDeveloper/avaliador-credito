@@ -35,7 +35,7 @@ mq:
   queue:
     emissao-cartoes: emissao-cartoes
 keycloak:
-  jwt_public_key: "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtRSO4qCk//4EcEL9EW5xnv8OhKS3Iyiheghyy+hgufaucWlsBEXKFks/brx1nbo4F4cvN9zsDgN88IEJMmTtc81HA2IZ96CJ6CF4spUR6BI+mIvQR43Tg8SS1dTjITSMfoLaIokLJXZuGVcaLJmVl0RiXw8HGvG9kvlf7MFkLIkE9LgyLbJLaEU7x+LdiQ64e0GL+khZof0Ug1h27MQNZ4A/h4/xza0s0VdgoxSR9VYdaJfOkZjoUG8IVv6HKC9M9yHNSjEOtVcpKItKcRdcX2j96PPeIQZKwuIqku4CvT5ElNZLTQ6x1+apXHEmhqcjVOxYWgodFCncCfQdrcbiPwIDAQAB"
-  url: "http://localhost:8080/realms/avaliador-credito/protocol/openid-connect/token"
-  clientId: "avaliador-credito"
-  clientSecret: "XdQe5HBsk3Wj0Xuwz53GFVQfmCXr6Ub9"
+  jwt_public_key: 
+  url: 
+  clientId: 
+  clientSecret: 
