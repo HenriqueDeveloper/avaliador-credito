@@ -26,6 +26,10 @@ services:
         - 8080:8080
       depends_on:
         - postgres
+      volumes:
+        - keycloak_data:/opt/jboss/keycloak/standalone/data
+      networks:
+        - network
         
   rabbitmq:
     image: rabbitmq:3.11-management
@@ -38,6 +42,10 @@ services:
       - "15672:15672"
     networks:
       - network
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+
+
   cartao-db:
     image: postgres:15.3
     volumes:
@@ -85,6 +93,7 @@ services:
       - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://eureka-user:123456@eureka-server:8761/eureka
     networks:
       - network
+
   cliente-service:
     build: 
       context: ./cliente-service
@@ -94,8 +103,11 @@ services:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://cliente-db/postgres
       - SPRING_DATASOURCE_USERNAME=postgres
       - SPRING_DATASOURCE_PASSWORD=postgres
-      - SECURITY_JWT_EXPIRACAO=30
-      - SECURITY_JWT_CHAVE_ASSINATURA=VrAhBEGD0zcsL8T6w3PmYDaFWtcW2vWz1cW57Lk05bSCnDrdYnTbJhGeBZdFufraJUNw0jFvbsmAAngSMYHPeqYH5nj7AeL2
+      - KEYCLOAK_URL=http://keycloak:8080/realms/avaliador-credito/protocol/openid-connect/token
+      - KEYCLOAK_JWT_PUBLIC_KEY=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAkZF8HQWqAPMUZkJih0wXbM+EHjJwIWKIqwbVzM9n0mSBxKC4fbREHNBrXQTZLri4heOIeeVNXVMowa2wbJ8bFGFmDdqYHkaTmhZdm/jtXnbwJZ37pqOblwx603MhmimwUiiFB0CIOareRwgmpR6rHkhdiEOqrs9jdG/VuwEPGEw3lt2q/9Wff7lhesGPPw0NbgMtuRikHvuIFGHbsaXZNBcqriw56KLRltvlGL6pykMSLnTg9TxtAtEB8hNDL8tkS00xMB/+WkWnbKkS3x57XgpFJpqKDD8Fw2hb+rXWxYtTrklnnovDDEFBfuX+q/eXOo7+9TZSQgnlle7iIGsYdwIDAQAB
+      - KEYCLOAK_CLIENTSECRET=aJLjONpnYlnARRfQqxTsrfRxDeeIZru9
+      - KEYCLOAK_CLIENTID=avaliador-credito
+
     depends_on:
       - eureka-server
       - cliente-db
@@ -112,8 +124,11 @@ services:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://cartao-db/postgres
       - SPRING_DATASOURCE_USERNAME=postgres
       - SPRING_DATASOURCE_PASSWORD=postgres
-      - SECURITY_JWT_EXPIRACAO=30
-      - SECURITY_JWT_CHAVE_ASSINATURA=VrAhBEGD0zcsL8T6w3PmYDaFWtcW2vWz1cW57Lk05bSCnDrdYnTbJhGeBZdFufraJUNw0jFvbsmAAngSMYHPeqYH5nj7AeL2
+      - KEYCLOAK_URL=http://keycloak:8080/realms/avaliador-credito/protocol/openid-connect/token
+      - KEYCLOAK_JWT_PUBLIC_KEY=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAkZF8HQWqAPMUZkJih0wXbM+EHjJwIWKIqwbVzM9n0mSBxKC4fbREHNBrXQTZLri4heOIeeVNXVMowa2wbJ8bFGFmDdqYHkaTmhZdm/jtXnbwJZ37pqOblwx603MhmimwUiiFB0CIOareRwgmpR6rHkhdiEOqrs9jdG/VuwEPGEw3lt2q/9Wff7lhesGPPw0NbgMtuRikHvuIFGHbsaXZNBcqriw56KLRltvlGL6pykMSLnTg9TxtAtEB8hNDL8tkS00xMB/+WkWnbKkS3x57XgpFJpqKDD8Fw2hb+rXWxYtTrklnnovDDEFBfuX+q/eXOo7+9TZSQgnlle7iIGsYdwIDAQAB
+      - KEYCLOAK_CLIENTSECRET=aJLjONpnYlnARRfQqxTsrfRxDeeIZru9
+      - KEYCLOAK_CLIENTID=avaliador-credito
+
     depends_on:
       - eureka-server
       - cartao-db
@@ -129,18 +144,22 @@ services:
     environment:
       - SPRING_RABBITMQ_HOST=rabbitmq
       - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://eureka-user:123456@eureka-server:8761/eureka
-      - SECURITY_JWT_EXPIRACAO=30
-      - SECURITY_JWT_CHAVE_ASSINATURA=VrAhBEGD0zcsL8T6w3PmYDaFWtcW2vWz1cW57Lk05bSCnDrdYnTbJhGeBZdFufraJUNw0jFvbsmAAngSMYHPeqYH5nj7AeL2
+      - KEYCLOAK_URL=http://keycloak:8080/realms/avaliador-credito/protocol/openid-connect/token
+      - KEYCLOAK_JWT_PUBLIC_KEY=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAkZF8HQWqAPMUZkJih0wXbM+EHjJwIWKIqwbVzM9n0mSBxKC4fbREHNBrXQTZLri4heOIeeVNXVMowa2wbJ8bFGFmDdqYHkaTmhZdm/jtXnbwJZ37pqOblwx603MhmimwUiiFB0CIOareRwgmpR6rHkhdiEOqrs9jdG/VuwEPGEw3lt2q/9Wff7lhesGPPw0NbgMtuRikHvuIFGHbsaXZNBcqriw56KLRltvlGL6pykMSLnTg9TxtAtEB8hNDL8tkS00xMB/+WkWnbKkS3x57XgpFJpqKDD8Fw2hb+rXWxYtTrklnnovDDEFBfuX+q/eXOo7+9TZSQgnlle7iIGsYdwIDAQAB
+      - KEYCLOAK_CLIENTSECRET=aJLjONpnYlnARRfQqxTsrfRxDeeIZru9
+      - KEYCLOAK_CLIENTID=avaliador-credito
     depends_on:
       - eureka-server
       - cartao-db
       - rabbitmq
     networks:
       - network
+      
 networks:
   network:
 volumes:
-    db:
-    cartao-db:
-    cliente-db:
-    postgres_data:
+  cartao-db:
+  cliente-db:
+  postgres_data:
+  keycloak_data:
+  rabbitmq_data:
