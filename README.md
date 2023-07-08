@@ -45,6 +45,6 @@ Make sure you have the `realm-export.json` file ready in your project directory 
 
 ## Swagger documentation
 
-http://localhost:8080/swagger-ui.html
+http://localhost:8888/swagger-ui.html
 
 ![Captura de tela de 2023-07-08 15-32-52](https://github.com/c-henrique-dev/avaliador-credito-microsservice/assets/70810148/96b8a2df-f503-45e6-89ed-903b399be9c2)
