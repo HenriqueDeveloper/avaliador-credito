@@ -9,6 +9,18 @@ spring:
         locator:
           enabled: true
           lower-case-service-id: true
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Origin Access-Control-Allow-Credentials, RETAIN_UNIQUE
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins:
+              - "http://localhost:4200"
+            allowedMethods:
+              - "*"
+            allowedHeaders:
+              - "*"
+            allowCredentials: true
 eureka:
   client:
     fetch-registry: true
@@ -28,4 +40,4 @@ springdoc:
       - url: /avaliador-credito-service/v3/api-docs
         name: AVALIADOR-CREDITO-SERVICE
 keycloak:
-  jwt_public_key: "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAngFYqNEhgIScFIkNYSqkgyKYkX5dyKdO+2GPPK+CPxybDbwOREu+/R4/6agI03W+fYjey/nA/++FDO6IZiSUPqdZm3kZ+xr2KYI8VGIBXarLaE//yvwxjzZEpRTEzKIv7H/JRD7l45dnQRpxPNBUDtA7PzjOy/8WKY6Gf+oJNqJaOK84wnVB42wuuc0/zpOX/xRR2mMMUAaDHoN9ZM9r2CVBEYyG+KA9nvoDDhgdVy/5ll3ucEHaIAYR2uKekhHNQMEdhd3zgkq46QKfSBcehmWXYuN9nk1h7OjmrvcgUgahCmYZs8SNkuoKHWbIqGzVsqUlF9978ALIlDfXLl/EHQIDAQAB"
+  jwt_public_key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAs+M6LCuc2/VwQKD6Zxo12Wd7CyXlCLWxMghCOYqtHaPGSk+bYLr/TDDD1kFyY0TVLFl8CH8+ksHCAI6e+2zefW7RYHVBcKB+J4FRuguXMhhoM7Rf65rrKHmJgi/gLPF9aBuKeK4sPaQa+PwCVHnVuu4aAYVwO0D+sioelXObTp2oqBN0TYv00kUca3pdTYy+rUy65FHvUfe3baLuB8+r3zNPL/1E9O091tJZXZn2k9c+fTkCDUC5jAz7F/Vilhdm1dR123ah1uJZC0VsDBbPT9waEO4OX8Ybh8jBNW18q2C9962eY0WpN

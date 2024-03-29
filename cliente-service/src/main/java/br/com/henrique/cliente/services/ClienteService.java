@@ -14,15 +14,17 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class ClienteService {
-    @Autowired
-    public final ClienteRepository clienteRepository;
-    @Transactional
-    public Cliente save(ClienteDto clienteDto) {
-        Cliente cliente = new Cliente();
-        BeanUtils.copyProperties(clienteDto, cliente);
-        return this.clienteRepository.save(cliente);
-    }
-    public Optional<Cliente> getByCpf(String cpf) {
-        return this.clienteRepository.findByCpf(cpf);
-    }
+  @Autowired
+  public final ClienteRepository clienteRepository;
+
+  @Transactional
+  public Cliente save(ClienteDto clienteDto) {
+    Cliente cliente = new Cliente();
+    BeanUtils.copyProperties(clienteDto, cliente);
+    return this.clienteRepository.save(cliente);
+  }
+
+  public Optional<Cliente> getByCpf(String cpf) {
+    return this.clienteRepository.findByCpf(cpf);
+  }
 }

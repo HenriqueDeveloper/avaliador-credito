@@ -1,5 +1,9 @@
 package br.com.henrique.avaliadorcredito.exception.handler;
-import br.com.henrique.avaliadorcredito.exception.*;
+
+import br.com.henrique.avaliadorcredito.exception.ExceptionResponse;
+import br.com.henrique.avaliadorcredito.exception.ExceptionResponseValidator;
+import br.com.henrique.avaliadorcredito.exception.TokenException;
+import br.com.henrique.avaliadorcredito.exception.UserNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -14,53 +18,40 @@ import java.util.stream.Collectors;
 @RestControllerAdvice
 public class CustomizedResponseEntityExceptionHandler {
 
-    @ExceptionHandler(MethodArgumentNotValidException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public final ExceptionResponseValidator handleMethodArgumentNotValidException(MethodArgumentNotValidException ex) {
-        List<String> errors = ex.getBindingResult().getAllErrors()
-                .stream()
-                .map(erro -> erro.getDefaultMessage())
-                .collect(Collectors.toList());
-        return new ExceptionResponseValidator(HttpStatus.BAD_REQUEST, ex.getStatusCode().value(), errors);
-    }
+  @ExceptionHandler(MethodArgumentNotValidException.class)
+  @ResponseStatus(HttpStatus.BAD_REQUEST)
+  public final ExceptionResponseValidator handleMethodArgumentNotValidException(MethodArgumentNotValidException ex) {
+    List<String> errors = ex.getBindingResult().getAllErrors()
+      .stream()
+      .map(erro -> erro.getDefaultMessage())
+      .collect(Collectors.toList());
+    return new ExceptionResponseValidator(HttpStatus.BAD_REQUEST, ex.getStatusCode().value(), errors);
+  }
 
-    @ExceptionHandler(TokenException.class)
-    @ResponseStatus(HttpStatus.FORBIDDEN)
-    public final ExceptionResponse handlerTokenException(Exception ex, WebRequest request) {
-        ExceptionResponse exceptionResponse =
-                new ExceptionResponse(
-                        new Date(),
-                        ex.getMessage(),
-                        HttpStatus.FORBIDDEN.toString()
-                        );
-        return exceptionResponse;
+  @ExceptionHandler(TokenException.class)
+  @ResponseStatus(HttpStatus.FORBIDDEN)
+  public final ExceptionResponse handlerTokenException(Exception ex, WebRequest request) {
+    ExceptionResponse exceptionResponse =
+      new ExceptionResponse(
+        new Date(),
+        ex.getMessage(),
+        HttpStatus.FORBIDDEN.toString()
+      );
+    return exceptionResponse;
 
-    }
+  }
 
-    @ExceptionHandler(KeycloakException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public final ExceptionResponse handlerTokenException(KeycloakException ex) {
-        ExceptionResponse exceptionResponse =
-                new ExceptionResponse(
-                        new Date(),
-                        ex.getMessage(),
-                        HttpStatus.BAD_REQUEST.toString()
-                );
-        return exceptionResponse;
+  @ExceptionHandler(UserNotFoundException.class)
+  @ResponseStatus(HttpStatus.UNAUTHORIZED)
+  public final ExceptionResponse handlerTokenException(UserNotFoundException ex) {
+    ExceptionResponse exceptionResponse =
+      new ExceptionResponse(
+        new Date(),
+        ex.getMessage(),
+        HttpStatus.UNAUTHORIZED.toString()
+      );
+    return exceptionResponse;
 
-    }
-
-    @ExceptionHandler(UserNotFoundException.class)
-    @ResponseStatus(HttpStatus.UNAUTHORIZED)
-    public final ExceptionResponse handlerTokenException(UserNotFoundException ex) {
-        ExceptionResponse exceptionResponse =
-                new ExceptionResponse(
-                        new Date(),
-                        ex.getMessage(),
-                        HttpStatus.UNAUTHORIZED.toString()
-                );
-        return exceptionResponse;
-
-    }
+  }
 
 }

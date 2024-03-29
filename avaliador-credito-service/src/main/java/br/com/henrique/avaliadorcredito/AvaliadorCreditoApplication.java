@@ -10,8 +10,8 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @EnableRabbit
 public class AvaliadorCreditoApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(AvaliadorCreditoApplication.class, args);
-	}
+  public static void main(String[] args) {
+    SpringApplication.run(AvaliadorCreditoApplication.class, args);
+  }
 
 }

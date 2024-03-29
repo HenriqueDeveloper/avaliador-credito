@@ -3,6 +3,11 @@ server:
 spring:
   application:
     name: avaliador-credito-service
+  profiles:
+    active:
+      - avaliador
+  config:
+    import: configserver:http://localhost:7000
   rabbitmq:
     host: localhost
     port: 5672
@@ -23,8 +28,3 @@ springdoc:
   show-actuator: true
   api-docs:
    path: avaliador-credito-service/v3/api-docs
-keycloak:
-  jwt_public_key: 
-  url: 
-  clientId: 
-  clientSecret: 

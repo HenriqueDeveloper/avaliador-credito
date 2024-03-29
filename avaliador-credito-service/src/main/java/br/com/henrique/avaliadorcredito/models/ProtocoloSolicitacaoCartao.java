@@ -6,5 +6,5 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class ProtocoloSolicitacaoCartao {
-    private String protocolo;
+  private String protocolo;
 }

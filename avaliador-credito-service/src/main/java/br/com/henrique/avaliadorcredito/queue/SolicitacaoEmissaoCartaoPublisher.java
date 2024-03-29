@@ -12,18 +12,18 @@ import org.springframework.stereotype.Component;
 @Component
 @RequiredArgsConstructor
 public class SolicitacaoEmissaoCartaoPublisher {
-    private final RabbitTemplate rabbitTemplate;
-    @Autowired
-    private Queue queueEmissaoCartoes;
+  private final RabbitTemplate rabbitTemplate;
+  @Autowired
+  private Queue queueEmissaoCartoes;
 
-    public void solicitarCartao(DadosSolicitacaoEmissaoCartao dados) throws JsonProcessingException {
-        var json = convertIntoJson(dados);
-        rabbitTemplate.convertAndSend(queueEmissaoCartoes.getName(), json);
-    }
+  public void solicitarCartao(DadosSolicitacaoEmissaoCartao dados) throws JsonProcessingException {
+    var json = convertIntoJson(dados);
+    rabbitTemplate.convertAndSend(queueEmissaoCartoes.getName(), json);
+  }
 
-    private String convertIntoJson(DadosSolicitacaoEmissaoCartao dados) throws JsonProcessingException {
-        ObjectMapper mapper = new ObjectMapper();
-        var json = mapper.writeValueAsString(dados);
-        return json;
-    }
+  private String convertIntoJson(DadosSolicitacaoEmissaoCartao dados) throws JsonProcessingException {
+    ObjectMapper mapper = new ObjectMapper();
+    var json = mapper.writeValueAsString(dados);
+    return json;
+  }
 }

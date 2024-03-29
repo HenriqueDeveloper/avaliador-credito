@@ -3,17 +3,11 @@ server:
 spring:
   application:
     name: cartao-service
-  datasource:
-    driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/cartoes_ms
-    username: postgres
-    password: postgres
-  jpa:
-    hibernate:
-      ddl-auto: update
-    show-sql: true
-    database: postgresql
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  profiles:
+    active:
+      - cartao
+  config:
+    import: configserver:http://localhost:7000
   rabbitmq:
     host: localhost
     port: 5672
@@ -25,8 +19,6 @@ eureka:
       defaultZone: http://eureka-user:123456@localhost:8761/eureka
   instance:
     instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
-openapi: 
-   url: http://localhost:8888 #api gateway url
 springdoc:
   show-actuator: true
   api-docs:
@@ -34,8 +26,3 @@ springdoc:
 mq:
   queue:
     emissao-cartoes: emissao-cartoes
-keycloak:
-  jwt_public_key: 
-  url: 
-  clientId: 
-  clientSecret: 

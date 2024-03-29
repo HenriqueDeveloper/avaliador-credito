@@ -12,12 +12,12 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @OpenAPIDefinition(info = @Info(title = "CLIENTE-SERVICE", version = "1.0",
-        contact = @Contact(name = "Carlos Henrique")),
-        security = {@SecurityRequirement(name = "bearerToken")}
+  contact = @Contact(name = "Carlos Henrique")),
+  security = {@SecurityRequirement(name = "bearerToken")}
 )
 @SecuritySchemes({
-        @SecurityScheme(name = "bearerToken", type = SecuritySchemeType.HTTP,
-                scheme = "bearer", bearerFormat = "JWT")
+  @SecurityScheme(name = "bearerToken", type = SecuritySchemeType.HTTP,
+    scheme = "bearer", bearerFormat = "JWT")
 })
 public class OpenAPIConfig {
 

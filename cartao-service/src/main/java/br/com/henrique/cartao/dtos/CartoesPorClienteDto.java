@@ -11,15 +11,15 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CartoesPorClienteDto {
-    private String nome;
-    private String bandeira;
-    private BigDecimal limiteLiberado;
+  private String nome;
+  private String bandeira;
+  private BigDecimal limiteLiberado;
 
-    public static CartoesPorClienteDto fromModel(Cliente model) {
-        return new CartoesPorClienteDto(
-                model.getCartao().getNome(),
-                model.getCartao().getBandeira().toString(),
-                model.getLimite()
-        );
-    }
+  public static CartoesPorClienteDto fromModel(Cliente model) {
+    return new CartoesPorClienteDto(
+      model.getCartao().getNome(),
+      model.getCartao().getBandeira().toString(),
+      model.getLimite()
+    );
+  }
 }

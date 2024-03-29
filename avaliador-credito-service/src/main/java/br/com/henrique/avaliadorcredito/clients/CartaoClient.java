@@ -11,9 +11,10 @@ import java.util.List;
 
 @FeignClient(name = "cartao-service", path = "/cartao")
 public interface CartaoClient {
-    @GetMapping(path = "/getCartoesByCliente", params = "cpf")
-    ResponseEntity<List<CartaoCliente>> getCartoesByCliente(
-            @RequestParam("cpf") String cpf);
-    @GetMapping(path = "/getCartoesRendaAteh", params = "renda")
-    ResponseEntity<List<Cartao>> getCartoesRendaAteh(@RequestParam("renda") Long renda);
+  @GetMapping(path = "/getCartoesByCliente", params = "cpf")
+  ResponseEntity<List<CartaoCliente>> getCartoesByCliente(
+    @RequestParam("cpf") String cpf);
+
+  @GetMapping(path = "/getCartoesRendaAteh", params = "renda")
+  ResponseEntity<List<Cartao>> getCartoesRendaAteh(@RequestParam("renda") Long renda);
 }

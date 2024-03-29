@@ -16,30 +16,32 @@ import java.util.stream.Collectors;
 
 @Service
 public class CartaoService {
-    @Autowired
-    private CartaoRepository cartaoRepository;
+  @Autowired
+  private CartaoRepository cartaoRepository;
 
-    @Autowired
-    private ClienteService clienteCartaoService;
-    @Transactional
-    public Cartao save(CartaoDto cartaoDto) {
-        Cartao cartao = new Cartao();
-        BeanUtils.copyProperties(cartaoDto, cartao);
-        return this.cartaoRepository.save(cartao);
-    }
+  @Autowired
+  private ClienteService clienteCartaoService;
 
-    public List<Cartao> getCartoesRendaMenorIgual(Long renda) {
-        var rendaBigDecimal = BigDecimal.valueOf(renda);
-        return this.cartaoRepository.findByRendaLessThanEqual(rendaBigDecimal);
-    }
+  @Transactional
+  public Cartao save(CartaoDto cartaoDto) {
+    Cartao cartao = new Cartao();
+    BeanUtils.copyProperties(cartaoDto, cartao);
+    return this.cartaoRepository.save(cartao);
+  }
 
-    public List<CartoesPorClienteDto> getCartoesByCliente(String cpf) {
-        List<Cliente> lista = clienteCartaoService.listCartoesByCpf(cpf);
-        List<CartoesPorClienteDto> resolveList = lista.stream()
-                .map(CartoesPorClienteDto::fromModel)
-                .collect(Collectors.toList());
+  public List<Cartao> getCartoesRendaMenorIgual(Long renda) {
+    var rendaBigDecimal = BigDecimal.valueOf(renda);
+    return this.cartaoRepository.findByRendaLessThanEqual(rendaBigDecimal);
+  }
 
-        return resolveList;
-    }
+  public List<CartoesPorClienteDto> getCartoesByCliente(String cpf) {
+    List<Cliente> lista = clienteCartaoService.listCartoesByCpf(cpf);
+
+    List<CartoesPorClienteDto> resolveList = lista.stream()
+      .map(CartoesPorClienteDto::fromModel)
+      .collect(Collectors.toList());
+
+    return resolveList;
+  }
 
 }

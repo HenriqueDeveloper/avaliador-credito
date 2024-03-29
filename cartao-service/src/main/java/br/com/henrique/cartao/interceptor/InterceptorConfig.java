@@ -7,11 +7,11 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 public class InterceptorConfig implements WebMvcConfigurer {
-    @Autowired
-    TokenInterceptor usuarioInterceptor;
+  @Autowired
+  TokenInterceptor tokenInterceptor;
 
-    @Override
-    public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(usuarioInterceptor).addPathPatterns("/cartao/**");
-    }
+  @Override
+  public void addInterceptors(InterceptorRegistry registry) {
+    registry.addInterceptor(tokenInterceptor).addPathPatterns("/cartao/**");
+  }
 }

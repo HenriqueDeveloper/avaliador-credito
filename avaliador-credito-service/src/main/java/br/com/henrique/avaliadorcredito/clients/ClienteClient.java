@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @FeignClient(value = "cliente-service", path = "/cliente")
 public interface ClienteClient {
-    @GetMapping(path = "/getCliente" , params = "cpf")
-    ResponseEntity<DadosCliente> dadosCliente(@RequestParam("cpf") String cpf);
+  @GetMapping(path = "/getCliente", params = "cpf")
+  ResponseEntity<DadosCliente> dadosCliente(@RequestParam("cpf") String cpf);
 
-    }
+}

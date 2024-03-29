@@ -8,15 +8,15 @@ import java.util.List;
 @Data
 public class ExceptionResponseValidator {
 
-    private HttpStatus status;
-    private Integer statusCode;
-    private List<String> errors;
+  private HttpStatus status;
+  private Integer statusCode;
+  private List<String> errors;
 
-    public ExceptionResponseValidator(HttpStatus status, Integer statusCode, List<String> errors) {
-        super();
-        this.errors = errors;
-        this.statusCode = statusCode;
-        this.status = status;
-    }
+  public ExceptionResponseValidator(HttpStatus status, Integer statusCode, List<String> errors) {
+    super();
+    this.errors = errors;
+    this.statusCode = statusCode;
+    this.status = status;
+  }
 
 }
