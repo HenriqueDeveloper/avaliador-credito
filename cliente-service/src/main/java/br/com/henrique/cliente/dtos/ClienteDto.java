@@ -1,10 +1,10 @@
 package br.com.henrique.cliente.dtos;
 
 import br.com.henrique.cliente.entitys.Cliente;
+import br.com.henrique.cliente.validation.CPF;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
-import org.hibernate.validator.constraints.br.CPF;
 
 @Data
 public class ClienteDto {

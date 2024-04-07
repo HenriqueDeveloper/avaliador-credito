@@ -20,6 +20,8 @@ public class ClienteService {
   @Transactional
   public Cliente save(ClienteDto clienteDto) {
     Cliente cliente = new Cliente();
+    String cpfSemMascara = clienteDto.getCpf().replaceAll("[.-]", "");
+    clienteDto.setCpf(cpfSemMascara);
     BeanUtils.copyProperties(clienteDto, cliente);
     return this.clienteRepository.save(cliente);
   }
